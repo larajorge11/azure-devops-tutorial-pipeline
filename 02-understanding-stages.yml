@@ -9,15 +9,29 @@ stages:
   jobs:
   - job: Job1
     steps:
-    - bash: echo First Job
-    - bash: echo PipelineLevelVariable -> $(PipelineLevelVariable)
-    - bash: echo Build.BuildId -> $(Build.BuildId)
-    - bash: echo Build.BuildNumber -> $(Build.BuildNumber)
-    - bash: echo Build.SourceBranchName -> $(Build.SourceBranchName)
+    - bash: java -version
+    - bash: node --version
+    - bash: python --version
+    - bash: mvn -version
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
+    # - bash: echo First Job
+    # - bash: echo PipelineLevelVariable -> $(PipelineLevelVariable)
+    # - bash: echo Build.BuildId -> $(Build.BuildId)
+    # - bash: echo Build.BuildNumber -> $(Build.BuildNumber)
+    # - bash: echo Build.SourceBranchName -> $(Build.SourceBranchName)
     # - bash: echo Build.SourcesDirectory -> $(Build.SourcesDirectory)
     # - bash: echo Build.ArtifactStagingDirectory -> $(Build.ArtifactStagingDirectory)
     # - bash: $(System.DefaultWorkingDirectory)
-    - bash: ls -R $(System.DefaultWorkingDirectory)
+    # - bash: ls -R $(System.DefaultWorkingDirectory)
   # - job: job2
   #   steps:
   #   - bash: echo Second job
