@@ -28,8 +28,15 @@ jobs:
   - script: echo job2!
     displayName: 'Run one-line job2'
 - job: job3
-  dependsOn: job2
+  dependsOn: job1
   steps:
     - script: echo This is the job3
       displayName: 'Run the job3'
+- job: job4
+  dependsOn:
+  - job2
+  - job3
+  steps:
+    - script: echo This is the Job4
+      displayName: 'Run the job4'
 
