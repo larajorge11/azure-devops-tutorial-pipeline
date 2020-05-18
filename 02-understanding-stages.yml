@@ -14,7 +14,7 @@ stages:
     - bash: echo Build.BuildId -> $(Build.BuildId)
     - bash: echo Build.BuildNumber -> $(Build.BuildNumber)
     - bash: echo Build.SourceBranchName -> $(Build.SourceBranchName)
-    - bash: echo Build.SourcesDirectory -> $(Build.SourcesDirectory)
+    # - bash: echo Build.SourcesDirectory -> $(Build.SourcesDirectory)
     - bash: echo Build.ArtifactStagingDirectory -> $(Build.ArtifactStagingDirectory)
     - bash: echo System.DefaultWorkingDirectory -> $(System.DefaultWorkingDirectory)
     - bash: ls -R $(System.DefaultWorkingDirectory)
